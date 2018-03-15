@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Hacker : MonoBehaviour
 {
@@ -113,13 +114,13 @@ public class Hacker : MonoBehaviour
         switch (currentLevel)
         {
             case Level.Library:
-                password = level1Passwords[Random.Range(0, level1Passwords.Length)];
+                password = level1Passwords[UnityEngine.Random.Range(0, level1Passwords.Length)];
                 break;
             case Level.Police:
-                password = level2Passwords[Random.Range(0, level2Passwords.Length)];
+                password = level2Passwords[UnityEngine.Random.Range(0, level2Passwords.Length)];
                 break;
             case Level.NASA:
-                password = level3Passwords[Random.Range(0, level2Passwords.Length)];
+                password = level3Passwords[UnityEngine.Random.Range(0, level2Passwords.Length)];
                 break;
             default:
                 Debug.LogError("Invalid Level Error");
@@ -143,12 +144,50 @@ public class Hacker : MonoBehaviour
     {
         currentScreen = Screen.Win;
         Terminal.ClearScreen();
-        Terminal.WriteLine("Password Accepted");
-        Terminal.WriteLine("");
-        Terminal.WriteLine("You have Won!");
-        Terminal.WriteLine("");
+        DisplayPrize();
         Terminal.WriteLine("Would you like to play again?");
         Terminal.WriteLine("Press y / n and press enter...");
+    }
+
+    void DisplayPrize()
+    {
+        switch(currentLevel)
+        {
+            case Level.Library:
+                Terminal.WriteLine("You have Won!");
+                Terminal.WriteLine("Here, have a book...");
+                Terminal.WriteLine(@"
+    _______
+   /      //
+  /      // 
+ /______//
+(______)/
+");
+                break;
+            case Level.Police:
+                Terminal.WriteLine("You have Won!");
+                Terminal.WriteLine("Here, have a Key...");
+                Terminal.WriteLine(@"
+ ____
+/    \________
+|     _/\/\__=/
+\____/
+");
+                break;
+            case Level.NASA:
+                Terminal.WriteLine("You have Won!");
+                Terminal.WriteLine("Here, have a rocket...");
+                Terminal.WriteLine(@"
+    ^
+   / \
+   | |
+   | |
+  /___\
+");
+                break;
+        }
+            
+
     }
 
     void AskToPlayAgain(string input)
