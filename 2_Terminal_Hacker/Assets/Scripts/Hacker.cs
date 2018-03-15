@@ -5,6 +5,7 @@ public class Hacker : MonoBehaviour
 {
     //Game State
     string password;
+    string menuHint ="You can type menu at any time...";
     enum Screen { MainMenu, Password, Win, Off };
     Screen currentScreen;
     enum Level { Library, Police, NASA };
@@ -31,7 +32,7 @@ public class Hacker : MonoBehaviour
         Terminal.WriteLine("Type " + (currentLevel + 1) + " for " + (currentLevel + 1));
         Terminal.WriteLine("Type " + (currentLevel + 2) + " for " + (currentLevel + 2));
         Terminal.WriteLine("");
-        Terminal.WriteLine("Type menu at any time to return here");
+        Terminal.WriteLine(menuHint);
         Terminal.WriteLine("");
         Terminal.WriteLine("Enter your selection:");
     }
@@ -93,6 +94,7 @@ public class Hacker : MonoBehaviour
         else
         {
             Terminal.WriteLine("Invalid entry, please try again...");
+            Terminal.WriteLine(menuHint);
         }
     }
 
@@ -142,6 +144,7 @@ public class Hacker : MonoBehaviour
         else
         {
             Terminal.WriteLine("Invalid password, pelase try again...");
+            Terminal.WriteLine(menuHint);
             DisplayLevelOptions();
         }
     }
