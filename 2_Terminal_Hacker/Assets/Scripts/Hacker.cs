@@ -101,12 +101,17 @@ public class Hacker : MonoBehaviour
         currentScreen = Screen.Password;
         Terminal.ClearScreen();
         SelectRandomPassword();
+        DisplayLevelOptions();
+     }
+
+    void DisplayLevelOptions()
+    {
         Terminal.WriteLine("========================");
         Terminal.WriteLine("");
         Terminal.WriteLine("Welcome To " + currentLevel);
         Terminal.WriteLine("Security Level " + ((int)currentLevel + 1));
         Terminal.WriteLine("");
-        Terminal.WriteLine("Please Enter Password: ");
+        Terminal.WriteLine("Enter Password: hint: " + password.Anagram());
     }
 
     void SelectRandomPassword()
@@ -137,6 +142,7 @@ public class Hacker : MonoBehaviour
         else
         {
             Terminal.WriteLine("Invalid password, pelase try again...");
+            DisplayLevelOptions();
         }
     }
 
